@@ -69,6 +69,8 @@ function Profil() {
     setIsImageChangeVisible((prev) => !prev);
   };
 
+  
+
   return (
     <ProfilWrapper>
       <Img src={imageSrc} alt="Profile" />
