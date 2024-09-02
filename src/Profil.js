@@ -17,6 +17,13 @@ const Img = styled.img`
   background-color: red;
 `;
 
+const Img2 = styled.img`
+  width: 500px;
+  height: 500px;
+  z-index: 0;
+  background-color: red;
+`;
+
 const P = styled.p`
   margin: 0;
 `;
@@ -29,15 +36,15 @@ const OnImgChanger = styled.button`
 
 const HandleImageChangeWrapper = styled.div`
   position: absolute;
-  top: 0; /* 상단 위치 지정 */
-  left: 0; /* 좌측 위치 지정 */
-  background-color: tomato;
+  top: 0; 
+  left: 0; 
+  background-color:white;
   width: 100vw;
   height: 100vh;
-  display: ${(props) => (props.visible ? 'flex' : 'none')}; /* flex로 변경하여 가운데 정렬 가능 */
-  justify-content: center; /* 수평 가운데 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
-  z-index: 10; /* 다른 요소 위에 위치하도록 설정 */
+  display: ${(props) => (props.visible ? 'flex' : 'none')};
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 `;
 
 const Input = styled.input`
@@ -71,6 +78,7 @@ function Profil() {
         <P>사진 변경하기</P>
       </OnImgChanger>
       <HandleImageChangeWrapper visible={isImageChangeVisible}>
+        <Img2 src={imageSrc} alt="Profile" />
         <OnImgChanger onClick={onImgChange}>닫기</OnImgChanger>
         <Input type="file" onChange={handleImageChange} />
       </HandleImageChangeWrapper>
