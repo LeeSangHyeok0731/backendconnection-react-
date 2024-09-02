@@ -53,8 +53,6 @@ function submitForm() {
     });
 }
 
-onGeoOk();
-
 function Godata() {
     return(
         <Form>        

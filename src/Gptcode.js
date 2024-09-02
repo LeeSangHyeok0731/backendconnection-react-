@@ -2,13 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const Form = styled.form`
-  /* 추가적인 스타일링을 여기에 작성하세요 */
+
 `;
 
 function Godata() {
-  const formRef = useRef(null);  // Form element를 참조하기 위한 ref 설정
+  const formRef = useRef(null);
 
-  // Component가 처음 렌더링될 때 `onGeoOk` 함수 호출
   useEffect(() => {
     onGeoOk();
   }, []);
@@ -27,12 +26,11 @@ function Godata() {
   }
 
   function submitForm() {
-    const form = formRef.current;  // ref를 사용하여 form 요소에 접근
+    const form = formRef.current; 
     const formData = new FormData(form);
 
     const url = 'https://port-0-tofaker-backend-lzsaeexf05f2c47e.sel4.cloudtype.app/api/v1/feed';
 
-    // FormData 객체 출력
     for (const [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
     }
