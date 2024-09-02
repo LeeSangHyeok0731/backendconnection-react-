@@ -7,7 +7,7 @@ const ProfilWrapper = styled.div`
   height: 150px;
   display: flex;
   align-items: center;
-  position: relative; /* 추가 */
+  position: relative;
 `;
 
 const Img = styled.img`
@@ -22,24 +22,32 @@ const P = styled.p`
 `;
 
 const OnImgChanger = styled.button`
-  background-color: black;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
 `;
 
 const HandleImageChangeWrapper = styled.div`
   position: absolute;
-  background-color:tomato;
+  top: 0; /* 상단 위치 지정 */
+  left: 0; /* 좌측 위치 지정 */
+  background-color: tomato;
   width: 100vw;
   height: 100vh;
-  display: ${(props) => (props.visible ? 'block' : 'none')}; /* 수정 */
+  display: ${(props) => (props.visible ? 'flex' : 'none')}; /* flex로 변경하여 가운데 정렬 가능 */
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  z-index: 10; /* 다른 요소 위에 위치하도록 설정 */
 `;
 
 const Input = styled.input`
-    color:white;
-`
+  color: white;
+  margin-top: 10px; /* 간격 추가 */
+`;
 
 function Profil() {
   const [imageSrc, setImageSrc] = useState('https://pub-9b6750bc62f84a5c943b4295f6ee659d.r2.dev/f60e6d8b-55a9-4805-bf1b-91228e7b1689-20240530_155924.jpg');
-  const [isImageChangeVisible, setIsImageChangeVisible] = useState(false); // 추가
+  const [isImageChangeVisible, setIsImageChangeVisible] = useState(false);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -53,9 +61,7 @@ function Profil() {
   };
 
   const onImgChange = () => {
-    let TF = true;
-    setIsImageChangeVisible(TF);
-    TF = !TF;
+    setIsImageChangeVisible((prev) => !prev); // 이전 값의 반대로 설정
   };
 
   return (
@@ -65,7 +71,7 @@ function Profil() {
         <P>사진 변경하기</P>
       </OnImgChanger>
       <HandleImageChangeWrapper visible={isImageChangeVisible}>
-        <OnImgChanger onClick={onImgChange}></OnImgChanger>
+        <OnImgChanger onClick={onImgChange}>닫기</OnImgChanger>
         <Input type="file" onChange={handleImageChange} />
       </HandleImageChangeWrapper>
     </ProfilWrapper>
