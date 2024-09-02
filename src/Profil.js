@@ -14,14 +14,12 @@ const Img = styled.img`
   width: 100px;
   height: 100px;
   z-index: 0;
-  background-color: red;
 `;
 
 const Img2 = styled.img`
   width: 500px;
   height: 500px;
   z-index: 0;
-  background-color: red;
 `;
 
 const P = styled.p`
@@ -68,7 +66,7 @@ function Profil() {
   };
 
   const onImgChange = () => {
-    setIsImageChangeVisible((prev) => !prev); // 이전 값의 반대로 설정
+    setIsImageChangeVisible((prev) => !prev);
   };
 
   return (

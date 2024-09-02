@@ -37,6 +37,10 @@ function Godata() {
 
     fetch(url, {
       method: 'POST',
+      headers: {
+        'Authorization': '7470c985ca283e19082b9ad5f875931e',
+        'email': 's24066@gsm.hs.kr', 
+      },      
       body: formData,
     })
       .then(response => response.json())
