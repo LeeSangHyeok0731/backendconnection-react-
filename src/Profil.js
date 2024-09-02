@@ -22,20 +22,19 @@ const P = styled.p`
 `;
 
 const OnImgChanger = styled.button`
-  background-color: white;
+  background-color: black;
 `;
 
 const HandleImageChangeWrapper = styled.div`
   position: absolute;
+  background-color:tomato;
   width: 100vw;
   height: 100vh;
   display: ${(props) => (props.visible ? 'block' : 'none')}; /* 수정 */
-  z-index: 2;
 `;
 
 const Input = styled.input`
     color:white;
-   z-index:3; 
 `
 
 function Profil() {
@@ -54,7 +53,9 @@ function Profil() {
   };
 
   const onImgChange = () => {
-    setIsImageChangeVisible(true);
+    let TF = true;
+    setIsImageChangeVisible(TF);
+    TF = !TF;
   };
 
   return (
@@ -64,6 +65,7 @@ function Profil() {
         <P>사진 변경하기</P>
       </OnImgChanger>
       <HandleImageChangeWrapper visible={isImageChangeVisible}>
+        <OnImgChanger onClick={onImgChange}></OnImgChanger>
         <Input type="file" onChange={handleImageChange} />
       </HandleImageChangeWrapper>
     </ProfilWrapper>
