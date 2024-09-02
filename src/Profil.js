@@ -50,6 +50,26 @@ const Input = styled.input`
   margin-top: 10px; /* 간격 추가 */
 `;
 
+function imgToServer(pictureUrl) {
+  const url = 'https://daram-gsm.kro.kr/';  
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Authorization': '7470c985ca283e19082b9ad5f875931e',
+      'email': 's24066@gsm.hs.kr', 
+    },      
+    /*body: formData,*/
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
 function Profil() {
   const [imageSrc, setImageSrc] = useState('https://pub-9b6750bc62f84a5c943b4295f6ee659d.r2.dev/f60e6d8b-55a9-4805-bf1b-91228e7b1689-20240530_155924.jpg');
   const [isImageChangeVisible, setIsImageChangeVisible] = useState(false);
@@ -63,6 +83,7 @@ function Profil() {
       };
       reader.readAsDataURL(file);
     }
+    imgToServer(event.target.files[0].name);
   };
 
   const onImgChange = () => {
