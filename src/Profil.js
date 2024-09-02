@@ -29,7 +29,7 @@ const HandleImageChangeWrapper = styled.div`
     background-color:red;    
     width:100%;
     height:100vh;
-    display:none;
+    display: ${(props) => (props.visible ? 'block' : 'none')};
 ` 
 
 function Profil() {
@@ -46,12 +46,14 @@ function Profil() {
         }
     };
 
-
+    const onImgChange = (event) => {
+        setIsImageChangeVisible(true);
+    }
 
     return (
         <ProfilWrapper>
             <Img src={imageSrc} alt="Profile" />
-            <OnImgChanger>
+            <OnImgChanger onClick={onImgChange}>
                 <P>사진 변경하기</P>
             </OnImgChanger>
             <HandleImageChangeWrapper>
