@@ -13,7 +13,7 @@ const ProfilWrapper = styled.div`
 const Img = styled.img`
   width: 100px;
   height: 100px;
-  z-index: 1;
+  z-index: 0;
   background-color: red;
 `;
 
@@ -27,11 +27,16 @@ const OnImgChanger = styled.button`
 
 const HandleImageChangeWrapper = styled.div`
   position: absolute;
-  background-color: red;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: ${(props) => (props.visible ? 'block' : 'none')}; /* 수정 */
+  z-index: 2;
 `;
+
+const Input = styled.input`
+    color:white;
+   z-index:3; 
+`
 
 function Profil() {
   const [imageSrc, setImageSrc] = useState('https://pub-9b6750bc62f84a5c943b4295f6ee659d.r2.dev/f60e6d8b-55a9-4805-bf1b-91228e7b1689-20240530_155924.jpg');
@@ -49,7 +54,7 @@ function Profil() {
   };
 
   const onImgChange = () => {
-    setIsImageChangeVisible(true); // 수정
+    setIsImageChangeVisible(true);
   };
 
   return (
@@ -58,8 +63,8 @@ function Profil() {
       <OnImgChanger onClick={onImgChange}>
         <P>사진 변경하기</P>
       </OnImgChanger>
-      <HandleImageChangeWrapper visible={isImageChangeVisible}> {/* 수정 */}
-        <input type="file" onChange={handleImageChange} />
+      <HandleImageChangeWrapper visible={isImageChangeVisible}>
+        <Input type="file" onChange={handleImageChange} />
       </HandleImageChangeWrapper>
     </ProfilWrapper>
   );
