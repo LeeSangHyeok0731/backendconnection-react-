@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import WriteNotion from "./공고 글페이지/WriteNotion";
+import WriteNotionGpt from "./공고 글페이지/WriteNotion-Gpt";
 
 const WriteJova = styled.div`
     background-color: skyblue;
@@ -57,7 +57,7 @@ function Notion() {
     return (
         <WriteJova>
             <WritePage show={isWritePageVisible}>
-                <WriteNotion></WriteNotion>
+                <WriteNotionGpt></WriteNotionGpt>
                 <WriteButton onClick={OnWritePage}>돌아가기</WriteButton>
             </WritePage>
             <WriteButton onClick={OnWritePage}>글 쓰기</WriteButton>

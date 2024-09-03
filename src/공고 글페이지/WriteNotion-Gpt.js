@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import SeletMajor from "./SelectMajor";
+import SelectMajor from "./SelectMajor";
 
 // 스타일드 컴포넌트
 const WriteWrapper = styled.div`
@@ -23,22 +25,13 @@ const TextAreaContent = styled.textarea`
     height: 200px;
     margin-bottom: 20px;
     padding: 10px;
+    resize: none;
 `;
 
-const SelectMajor = styled.select`
-    width: 450px;
-    padding: 10px;
-    margin-bottom: 20px;
-`;
-
-function WriteNotion() {
+function WriteNotionGpt() {
     // 입력 필드를 관리하는 상태
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const [major, setMajor] = useState("");
-
-    // 선택할 전공 목록
-    const majors = ["컴퓨터 과학", "수학", "물리학", "화학", "생물학"];
 
     return (
         <WriteWrapper>
@@ -53,19 +46,10 @@ function WriteNotion() {
                 value={content} 
                 onChange={(e) => setContent(e.target.value)} 
             />
-            <SelectMajor 
-                value={major} 
-                onChange={(e) => setMajor(e.target.value)}
-            >
-                <option value="">전공 선택</option>
-                {majors.map((majorOption, index) => (
-                    <option key={index} value={majorOption}>
-                        {majorOption}
-                    </option>
-                ))}
-            </SelectMajor>
+            <SelectMajor />
+            <button>제출하기</button>
         </WriteWrapper>
     );
 }
 
-export default WriteNotion;
+export default WriteNotionGpt;
