@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import WriteNotion from "./WriteNotion";
+import WriteNotion from "./공고 글페이지/WriteNotion";
 
 const WriteJova = styled.div`
     background-color: skyblue;
