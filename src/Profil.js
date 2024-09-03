@@ -50,8 +50,12 @@ const Input = styled.input`
   margin-top: 10px; /* 간격 추가 */
 `;
 
-function imgToServer(pictureUrl) {
+function imgToServer(usersPicture) {
   const url = 'https://daram-gsm.kro.kr/';  
+
+  /*for (const [key, value] of formData.entries()) {
+    console.log(`${key}: ${value}`);
+  }*/
 
   fetch(url, {
     method: 'POST',
