@@ -18,7 +18,6 @@ function Godata() {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        /* 원하는 데이터를 상태로 저장하고 필요에 따라 렌더링에 사용 */
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -29,7 +28,7 @@ function Godata() {
     const form = formRef.current; 
     const formData = new FormData(form);
 
-    const url = 'https://port-0-tofaker-backend-lzsaeexf05f2c47e.sel4.cloudtype.app/api/v1/feed';
+    const url = 'https://daram-gsm.kro.kr/';
 
     for (const [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
@@ -37,6 +36,10 @@ function Godata() {
 
     fetch(url, {
       method: 'POST',
+      headers: {
+        'Authorization': '7470c985ca283e19082b9ad5f875931e',
+        'email': 's24066@gsm.hs.kr', 
+      },      
       body: formData,
     })
       .then(response => response.json())
