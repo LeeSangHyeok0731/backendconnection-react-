@@ -37,6 +37,10 @@ function SelectMajor() {
     }));
   };
 
+  const SubmitNotion = () => {
+    
+  };
+
   return (
     <MajorBoxWrapper>
       <MajorBox bgColor={bgColor[0]} onClick={() => handleClick(0)}>FrontEnd</MajorBox>

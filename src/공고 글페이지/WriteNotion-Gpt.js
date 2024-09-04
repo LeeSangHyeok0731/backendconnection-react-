@@ -46,7 +46,7 @@ function WriteNotionGpt() {
                 type="text" 
                 placeholder="제목 적기" 
                 value={title} 
-                onChange={(e) => setTitle(e.target.value)} 
+                onChange={(e) => setTitle(e.target.value)}  
             />
             <TextAreaContent 
                 placeholder="내용 적기" 
