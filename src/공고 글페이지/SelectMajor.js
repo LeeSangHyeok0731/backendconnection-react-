@@ -4,7 +4,7 @@ import styled from "styled-components";
 const MajorBox = styled.div`
     width: 100px;
     height: 40px;
-    background-color: ${({ isSelected }) => (isSelected ? 'yellow' : 'white')};
+    background-color: ${(props) => props.bgColor};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,57 +19,33 @@ const MajorBoxWrapper = styled.div`
     column-gap: 20px
 `
 
-function SelectMajor() {
-  const [selectedMajor, setSelectedMajor] = useState(null);
+function SelectMajor() {  
+  const [bgColor, setBgColors] = useState({
+    0: "white",
+    1: "white",
+    2: "white",
+    3: "white",
+    4: "white",
+    5: "white",
+    6: "white"
+  });
 
-  const handleClick = (major) => {
-    setSelectedMajor(major);
+  const handleClick = (id) => {
+    setBgColors((prevColors) => ({
+      ...prevColors,
+      [id]: prevColors[id] === "white" ? "yellow" : "white"
+    }));
   };
 
   return (
     <MajorBoxWrapper>
-      <MajorBox
-        isSelected={selectedMajor === "Front"}
-        onClick={() => handleClick("Front")}
-      >
-        FrontEnd
-      </MajorBox>
-      <MajorBox
-        isSelected={selectedMajor === "Back"}
-        onClick={() => handleClick("Back")}
-      >
-        BackEnd
-      </MajorBox>
-      <MajorBox
-        isSelected={selectedMajor === "Des"}
-        onClick={() => handleClick("Des")}
-      >
-        Design
-      </MajorBox>
-      <MajorBox
-        isSelected={selectedMajor === "Dev"}
-        onClick={() => handleClick("Dev")}
-      >
-        Devops
-      </MajorBox>
-      <MajorBox
-        isSelected={selectedMajor === "Ios"}
-        onClick={() => handleClick("Ios")}
-      >
-        Ios
-      </MajorBox>
-      <MajorBox
-        isSelected={selectedMajor === "And"}
-        onClick={() => handleClick("And")}
-      >
-        Android
-      </MajorBox>
-      <MajorBox
-        isSelected={selectedMajor === "Ai"}
-        onClick={() => handleClick("Ai")}
-      >
-        AI
-      </MajorBox>
+      <MajorBox bgColor={bgColor[0]} onClick={() => handleClick(0)}>FrontEnd</MajorBox>
+      <MajorBox bgColor={bgColor[1]} onClick={() => handleClick(1)}>BackEnd</MajorBox>
+      <MajorBox bgColor={bgColor[2]} onClick={() => handleClick(2)}>Design</MajorBox>
+      <MajorBox bgColor={bgColor[3]} onClick={() => handleClick(3)}>Ios</MajorBox>
+      <MajorBox bgColor={bgColor[4]} onClick={() => handleClick(4)}>Android</MajorBox>
+      <MajorBox bgColor={bgColor[5]} onClick={() => handleClick(5)}>Devops</MajorBox>
+      <MajorBox bgColor={bgColor[6]} onClick={() => handleClick(6)}>AI</MajorBox>
     </MajorBoxWrapper>
   );
 }
