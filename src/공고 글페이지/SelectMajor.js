@@ -30,16 +30,32 @@ function SelectMajor() {
     6: "white"
   });
 
+  const [selected, setSelected] = useState({
+    0: "unSelected",
+    1: "unSelected",
+    2: "unSelected",
+    3: "unSelected",
+    4: "unSelected",
+    5: "unSelected",
+    6: "unSelected"
+  });
+
   const handleClick = (id) => {
     setBgColors((prevColors) => ({
       ...prevColors,
       [id]: prevColors[id] === "white" ? "yellow" : "white"
     }));
+
+    setSelected((prevSelected) => ({
+      ...prevSelected,
+      [id]: prevSelected[id] === "unSelected" ? "Selected" : "unSelected"
+    }));
+    console.log(setSelected)
   };
 
-  const SubmitNotion = () => {
-    
-  };
+  /*const SubmitNotion = () => {
+
+  };*/
 
   return (
     <MajorBoxWrapper>

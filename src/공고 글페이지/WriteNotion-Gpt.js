@@ -35,6 +35,11 @@ const Submit = styled.button`
     background-color:white;
 `
 
+function WriteSubmit() {
+    console.log("writeSubmit");
+    
+}
+
 function WriteNotionGpt() {
     // 입력 필드를 관리하는 상태
     const [title, setTitle] = useState("");
@@ -54,7 +59,7 @@ function WriteNotionGpt() {
                 onChange={(e) => setContent(e.target.value)} 
             />
             <SelectMajor />
-            <Submit>제출하기</Submit>
+            <Submit onClick={WriteSubmit}>제출하기</Submit>
         </WriteWrapper>
     );
 }
