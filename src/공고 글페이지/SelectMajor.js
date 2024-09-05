@@ -27,7 +27,7 @@ const Submit = styled.button`
     grid-row:3;
 `
 
-function SelectMajor() {  
+function SelectMajor({ onSubmit }) {  
   const [bgColor, setBgColors] = useState({
     0: "white",
     1: "white",
@@ -69,7 +69,7 @@ function SelectMajor() {
     });
   
     // sendMajor를 사용하는 로직을 여기에 추가
-    console.log("Selected items:", sendMajor);
+    console.log(sendMajor);
   };
 
   return (

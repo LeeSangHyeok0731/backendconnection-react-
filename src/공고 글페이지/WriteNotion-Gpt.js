@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import SeletMajor from "./SelectMajor";
 import SelectMajor from "./SelectMajor";
 
 // 스타일드 컴포넌트
