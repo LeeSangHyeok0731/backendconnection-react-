@@ -28,18 +28,6 @@ const TextAreaContent = styled.textarea`
     resize: none;
 `;
 
-const Submit = styled.button`   
-    margin-top:50px;    
-    width:400px;
-    height:40px;
-    background-color:white;
-`
-
-function WriteSubmit() {
-    console.log("writeSubmit");
-    
-}
-
 function WriteNotionGpt() {
     // 입력 필드를 관리하는 상태
     const [title, setTitle] = useState("");
@@ -59,7 +47,6 @@ function WriteNotionGpt() {
                 onChange={(e) => setContent(e.target.value)} 
             />
             <SelectMajor />
-            <Submit onClick={WriteSubmit}>제출하기</Submit>
         </WriteWrapper>
     );
 }

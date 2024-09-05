@@ -15,8 +15,16 @@ const MajorBox = styled.div`
 const MajorBoxWrapper = styled.div`
     display:grid;
     grid-template-columns: 100px 100px 100px 100px;/*간격이 200px짜리 세로줄을 만든다*/
-    grid-template-rows: 50px;
+    grid-template-rows: 50px 50px;
     column-gap: 20px
+`
+
+const Submit = styled.button`      
+    width:autopx;
+    height:40px;
+    background-color:white;
+    grid-column: 2/4;
+    grid-row:3;
 `
 
 function SelectMajor() {  
@@ -50,12 +58,11 @@ function SelectMajor() {
       ...prevSelected,
       [id]: prevSelected[id] === "unSelected" ? "Selected" : "unSelected"
     }));
-    console.log(setSelected)
   };
 
-  /*const SubmitNotion = () => {
-
-  };*/
+  const SubmitNotion = () => {
+    console.log("제출하기")
+  };
 
   return (
     <MajorBoxWrapper>
@@ -66,6 +73,7 @@ function SelectMajor() {
       <MajorBox bgColor={bgColor[4]} onClick={() => handleClick(4)}>Android</MajorBox>
       <MajorBox bgColor={bgColor[5]} onClick={() => handleClick(5)}>Devops</MajorBox>
       <MajorBox bgColor={bgColor[6]} onClick={() => handleClick(6)}>AI</MajorBox>
+      <Submit onClick={SubmitNotion}>제출하기</Submit>
     </MajorBoxWrapper>
   );
 }
