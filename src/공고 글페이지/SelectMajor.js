@@ -67,11 +67,8 @@ function SelectMajor({ onSubmit }) {
         sendMajor.push(key);
       }
     });
-  
-    // sendMajor를 사용하는 로직을 여기에 추가
-    console.log(sendMajor);
-  };
-
+    console.log(sendMajor)
+  }
   return (
     <MajorBoxWrapper>
       <MajorBox bgColor={bgColor[0]} onClick={() => handleClick(0)}>FrontEnd</MajorBox>
@@ -84,6 +81,6 @@ function SelectMajor({ onSubmit }) {
       <Submit onClick={SubmitNotion}>제출하기</Submit>
     </MajorBoxWrapper>
   );
-}
+};
 
-export default SelectMajor;
+export default SelectMajor

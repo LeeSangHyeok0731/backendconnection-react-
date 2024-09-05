@@ -32,6 +32,13 @@ function WriteNotionGpt() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
+    const [majors, setMajors] = useState([]);
+
+    const handleMajorSubmit = (selectedMajors) => {
+        setMajors(selectedMajors);
+        console.log(selectedMajors);    
+    };
+
     return (
         <WriteWrapper>
             <InputTitle 
@@ -46,6 +53,7 @@ function WriteNotionGpt() {
                 onChange={(e) => setContent(e.target.value)} 
             />
             <SelectMajor />
+            <button onClick={handleMajorSubmit}>제출확인하기</button>
         </WriteWrapper>
     );
 }
