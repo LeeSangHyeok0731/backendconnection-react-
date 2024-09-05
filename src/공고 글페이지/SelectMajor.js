@@ -61,7 +61,15 @@ function SelectMajor() {
   };
 
   const SubmitNotion = () => {
-    console.log("제출하기")
+    let sendMajor = [];
+    Object.keys(selected).forEach((key) => {
+      if (selected[key] === "Selected") {
+        sendMajor.push(key);
+      }
+    });
+  
+    // sendMajor를 사용하는 로직을 여기에 추가
+    console.log("Selected items:", sendMajor);
   };
 
   return (
