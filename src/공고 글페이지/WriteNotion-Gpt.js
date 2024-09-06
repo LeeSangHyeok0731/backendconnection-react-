@@ -34,9 +34,9 @@ function WriteNotionGpt() {
 
     const [majors, setMajors] = useState([]);
 
-    const handleMajorSubmit = (selectedMajors) => {
-        setMajors(selectedMajors);
-        console.log(selectedMajors);    
+    const handleMajorSubmit = (sendMajor) => {
+        setMajors(sendMajor);
+        console.log("선택된 전공:", sendMajor);    
     };
 
     return (
@@ -52,8 +52,8 @@ function WriteNotionGpt() {
                 value={content} 
                 onChange={(e) => setContent(e.target.value)} 
             />
-            <SelectMajor />
-            <button onClick={handleMajorSubmit}>제출확인하기</button>
+            <SelectMajor onSubmit={handleMajorSubmit} />
+            <button onClick={() => console.log("전공 제출:", majors)}>제출 확인하기</button>
         </WriteWrapper>
     );
 }

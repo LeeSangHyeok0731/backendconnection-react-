@@ -68,6 +68,7 @@ function SelectMajor({ onSubmit }) {
       }
     });
     console.log(sendMajor)
+    onSubmit(sendMajor);
   }
   return (
     <MajorBoxWrapper>

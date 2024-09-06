@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import WriteNotionGpt from "./공고 글페이지/WriteNotion-Gpt";
+import SelectMajor from "./공고 글페이지/SelectMajor";
+
 
 const WriteJova = styled.div`
     background-color: skyblue;
@@ -54,6 +56,13 @@ function Notion() {
         setWritePageVisible((prevState) => !prevState);
     };
 
+    const [majors, setMajors] = useState([]);
+
+    const handleMajorSubmit = (sendMajor) => {
+        setMajors(sendMajor);
+        console.log("선택된 전공:", sendMajor);    
+    };
+
     return (
         <WriteJova>
             <WritePage show={isWritePageVisible}>
@@ -61,7 +70,7 @@ function Notion() {
                 <WriteButton onClick={OnWritePage}>돌아가기</WriteButton>
             </WritePage>
             <WriteButton onClick={OnWritePage}>글 쓰기</WriteButton>
-            <WritttenNotion>
+            <WritttenNotion onSubmit={handleMajorSubmit}>
                 <span>제목</span>
                 <P>모집내용</P>
             </WritttenNotion>
