@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import styled from "styled-components";
 
 const MajorBox = styled.div`
@@ -14,7 +14,7 @@ const MajorBox = styled.div`
 
 const MajorBoxWrapper = styled.div`
     display:grid;
-    grid-template-columns: 100px 100px 100px 100px;/*간격이 200px짜리 세로줄을 만든다*/
+    grid-template-columns: 100px 100px 100px 100px;/*간격이 200px짜리 세로줄을 만든다
     grid-template-rows: 50px 50px;
     column-gap: 20px
 `
@@ -84,4 +84,4 @@ function SelectMajor({ onSubmit }) {
   );
 };
 
-export default SelectMajor
+export default SelectMajor*/
