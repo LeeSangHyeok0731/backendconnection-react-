@@ -69,7 +69,6 @@ function Notion() {
 
             <WriteButton onClick={OnWritePage}>글 쓰기</WriteButton>
 
-            {/* 여러 개의 WrittenNotion 렌더링 */}
             {notions.map((notion, index) => (
                 <WritttenNotion key={index}>
                     <span>{notion.title}</span>
