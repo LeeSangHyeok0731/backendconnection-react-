@@ -92,13 +92,23 @@ function WriteNotionGpt({ onSubmit }) {
 
     const SubmitNotion = () => {
         let sendMajor = [];
+        let Title = title;
         Object.keys(selected).forEach((key) => {
             if (selected[key] === "Selected") {
-                sendMajor.push(parseInt(key)); // 키를 숫자로 변환해서 배열에 추가
+                if (key === "0") sendMajor.push("FrontEnd");
+                if (key === "1") sendMajor.push("BackEnd");
+                if (key === "2") sendMajor.push("Design");
+                if (key === "3") sendMajor.push("Ios");
+                if (key === "4") sendMajor.push("Android");
+                if (key === "5") sendMajor.push("Devops");
+                if (key === "6") sendMajor.push("AI");
             }
         });
         console.log("선택된 전공:", sendMajor);
-        onSubmit(sendMajor); // 부모 컴포넌트로 전공 전달
+        console.log(Title);
+        onSubmit({ majors: sendMajor, title: Title });
+        /*console.log(Content);
+        onSubmit(Content);*/
     };
 
     return (
