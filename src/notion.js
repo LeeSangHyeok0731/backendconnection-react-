@@ -50,7 +50,7 @@ const WritttenNotion = styled.div`
 function Notion() {
     const [isWritePageVisible, setWritePageVisible] = useState(false);
     const [majors, setMajors] = useState([]);
-    const information = true;
+    let information = true;
 
     const OnWritePage = () => {
         setWritePageVisible((prevState) => !prevState);
