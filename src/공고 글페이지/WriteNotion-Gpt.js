@@ -34,35 +34,29 @@ const MajorBox = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-radius:15px;
+    border-radius: 15px;
 `;
 
 const MajorBoxWrapper = styled.div`
-    display:grid;
-    grid-template-columns: 100px 100px 100px 100px;/*간격이 200px짜리 세로줄을 만든다*/
-    grid-template-rows: 50px 50px;
-    column-gap: 20px
-`
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(2, 50px);
+    column-gap: 20px;
+    margin-bottom: 20px;
+`;
 
-const Submit = styled.button`      
-    width:autopx;
-    height:40px;
-    background-color:white;
+const Submit = styled.button`
+    width: auto;
+    height: 40px;
+    background-color: white;
     grid-column: 2/4;
-    grid-row:3;
-`
+    grid-row: 3;
+`;
 
-function WriteNotionGpt({ onSubmit }) { 
-    // 입력 필드를 관리하는 상태
+function WriteNotionGpt({ onSubmit }) {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-
     const [majors, setMajors] = useState([]);
-
-    const handleMajorSubmit = (sendMajor) => {
-        setMajors(sendMajor);
-        console.log("선택된 전공:", sendMajor);    
-    };
 
     const [bgColor, setBgColors] = useState({
         0: "white",
@@ -71,56 +65,56 @@ function WriteNotionGpt({ onSubmit }) {
         3: "white",
         4: "white",
         5: "white",
-        6: "white"
-      });
-    
-      const [selected, setSelected] = useState({
+        6: "white",
+    });
+
+    const [selected, setSelected] = useState({
         0: "unSelected",
         1: "unSelected",
         2: "unSelected",
         3: "unSelected",
         4: "unSelected",
         5: "unSelected",
-        6: "unSelected"
-      });
-    
-      const handleClick = (id) => {
-        setBgColors((prevColors) => ({
-          ...prevColors,
-          [id]: prevColors[id] === "white" ? "yellow" : "white"
-        }));
-    
-        setSelected((prevSelected) => ({
-          ...prevSelected,
-          [id]: prevSelected[id] === "unSelected" ? "Selected" : "unSelected"
-        }));
-      };
+        6: "unSelected",
+    });
 
-      const SubmitNotion = () => {
+    const handleClick = (id) => {
+        setBgColors((prevColors) => ({
+            ...prevColors,
+            [id]: prevColors[id] === "white" ? "yellow" : "white",
+        }));
+
+        setSelected((prevSelected) => ({
+            ...prevSelected,
+            [id]: prevSelected[id] === "unSelected" ? "Selected" : "unSelected",
+        }));
+    };
+
+    const SubmitNotion = () => {
         let sendMajor = [];
         Object.keys(selected).forEach((key) => {
-          if (selected[key] === "Selected") {
-            sendMajor.push(key);
-          }
+            if (selected[key] === "Selected") {
+                sendMajor.push(parseInt(key)); // 키를 숫자로 변환해서 배열에 추가
+            }
         });
-        console.log(sendMajor)
-        onSubmit(sendMajor);
-      }
+        console.log("선택된 전공:", sendMajor);
+        onSubmit(sendMajor); // 부모 컴포넌트로 전공 전달
+    };
 
     return (
         <WriteWrapper>
-            <InputTitle 
-                type="text" 
-                placeholder="제목 적기" 
-                value={title} 
-                onChange={(e) => setTitle(e.target.value)}  
+            <InputTitle
+                type="text"
+                placeholder="제목 적기"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
             />
-            <TextAreaContent 
-                placeholder="내용 적기" 
-                value={content} 
-                onChange={(e) => setContent(e.target.value)} 
+            <TextAreaContent
+                placeholder="내용 적기"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
             />
-            <MajorBoxWrapper onSubmit={handleMajorSubmit} >
+            <MajorBoxWrapper>
                 <MajorBox bgColor={bgColor[0]} onClick={() => handleClick(0)}>FrontEnd</MajorBox>
                 <MajorBox bgColor={bgColor[1]} onClick={() => handleClick(1)}>BackEnd</MajorBox>
                 <MajorBox bgColor={bgColor[2]} onClick={() => handleClick(2)}>Design</MajorBox>
@@ -128,9 +122,8 @@ function WriteNotionGpt({ onSubmit }) {
                 <MajorBox bgColor={bgColor[4]} onClick={() => handleClick(4)}>Android</MajorBox>
                 <MajorBox bgColor={bgColor[5]} onClick={() => handleClick(5)}>Devops</MajorBox>
                 <MajorBox bgColor={bgColor[6]} onClick={() => handleClick(6)}>AI</MajorBox>
-                <Submit onClick={SubmitNotion}>제출하기</Submit>
             </MajorBoxWrapper>
-            <button onClick={() => console.log("전공 제출:", setMajors)}>제출 확인하기</button>
+            <Submit onClick={SubmitNotion}>제출하기</Submit>
         </WriteWrapper>
     );
 }
