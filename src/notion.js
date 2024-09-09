@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useState } from "react"; 
 import styled from "styled-components";
 import WriteNotionGpt from "./공고 글페이지/WriteNotion-Gpt"; 
 
@@ -7,8 +7,8 @@ const WriteJova = styled.div`
     width: 500px;
     height: 500px;
     display: flex;
-    justify-content: center;
-    position: relative;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const P = styled.p`
@@ -21,8 +21,8 @@ const WriteButton = styled.button`
     align-items: center;
     justify-content: center;
     height: 40px;
-    width: 80
-px;
+    width: 80px;
+    margin-top: 10px;
 `;
 
 const WritePage = styled.div`
@@ -44,31 +44,21 @@ const WritttenNotion = styled.div`
     border-radius: 15px;
     width: 450px;
     height: 50px;
-    margin-top: 50px;
-    position: absolute;
+    margin-top: 25px;
 `;
 
 function Notion() {
     const [isWritePageVisible, setWritePageVisible] = useState(false);
-    const [majors, setMajors] = useState([]);
-    const [selectedMajors, setSelectedMajors] = useState(["선택되지 않음"]);
-    const [title, setTitle] = useState(["제목"]);
+    const [notions, setNotions] = useState([]); // 여러 개의 전공과 제목 저장
 
     const OnWritePage = () => {
         setWritePageVisible((prevState) => !prevState);
     };
 
     const handleMajorSubmit = ({ majors, title }) => {
-        setSelectedMajors(majors); // 전공 정보를 업데이트
-        setTitle(title); // 제목 정보를 업데이트
+        setNotions((prevNotions) => [...prevNotions, { majors, title }]); // 새로운 값을 배열에 추가
+        OnWritePage();
     };
-
-    /*useEffect(() => {
-        const newSelectedMajors = majors.map((major) => {
-            
-        });
-        setSelectedMajors(newSelectedMajors);
-    }, [majors]);*/
 
     return (
         <WriteJova>
@@ -79,10 +69,13 @@ function Notion() {
 
             <WriteButton onClick={OnWritePage}>글 쓰기</WriteButton>
 
-            <WritttenNotion>
-                <span>{title}</span>
-                <P>선택된 전공: {selectedMajors.join(", ")}</P>
-            </WritttenNotion>
+            {/* 여러 개의 WrittenNotion 렌더링 */}
+            {notions.map((notion, index) => (
+                <WritttenNotion key={index}>
+                    <span>{notion.title}</span>
+                    <P>선택된 전공: {notion.majors.join(", ")}</P>
+                </WritttenNotion>
+            ))}
         </WriteJova>
     );
 }
