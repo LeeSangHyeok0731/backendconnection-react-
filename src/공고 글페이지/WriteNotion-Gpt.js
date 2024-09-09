@@ -130,7 +130,7 @@ function WriteNotionGpt({ onSubmit }) {
                 <MajorBox bgColor={bgColor[6]} onClick={() => handleClick(6)}>AI</MajorBox>
                 <Submit onClick={SubmitNotion}>제출하기</Submit>
             </MajorBoxWrapper>
-            <button onClick={() => console.log("전공 제출:", majors)}>제출 확인하기</button>
+            <button onClick={() => console.log("전공 제출:", setMajors)}>제출 확인하기</button>
         </WriteWrapper>
     );
 }
