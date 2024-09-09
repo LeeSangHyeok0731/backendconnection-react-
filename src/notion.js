@@ -51,29 +51,24 @@ const WritttenNotion = styled.div`
 function Notion() {
     const [isWritePageVisible, setWritePageVisible] = useState(false);
     const [majors, setMajors] = useState([]);
-    const [selectedMajors, setSelectedMajors] = useState([]);
+    const [selectedMajors, setSelectedMajors] = useState(["선택되지 않음"]);
+    const [title, setTitle] = useState(["제목"]);
 
     const OnWritePage = () => {
         setWritePageVisible((prevState) => !prevState);
     };
 
-    const handleMajorSubmit = (sendMajor) => {
-        setMajors(sendMajor);
+    const handleMajorSubmit = ({ majors, title }) => {
+        setSelectedMajors(majors); // 전공 정보를 업데이트
+        setTitle(title); // 제목 정보를 업데이트
     };
 
-    useEffect(() => {
+    /*useEffect(() => {
         const newSelectedMajors = majors.map((major) => {
-            if (major === 0) return "FrontEnd";
-            if (major === 1) return "BackEnd";
-            if (major === 2) return "Design";
-            if (major === 3) return "Ios";
-            if (major === 4) return "Android";
-            if (major === 5) return "Devops";
-            if (major === 6) return "AI";
-            return null;
+            
         });
         setSelectedMajors(newSelectedMajors);
-    }, [majors]);
+    }, [majors]);*/
 
     return (
         <WriteJova>
@@ -85,7 +80,7 @@ function Notion() {
             <WriteButton onClick={OnWritePage}>글 쓰기</WriteButton>
 
             <WritttenNotion>
-                <span>제목</span>
+                <span>{title}</span>
                 <P>선택된 전공: {selectedMajors.join(", ")}</P>
             </WritttenNotion>
         </WriteJova>
