@@ -47,29 +47,32 @@ const WritttenNotion = styled.div`
     width: 450px;
     height: 50px;
     margin-top: 25px;
-    display:grid;
+    display: grid;
     grid-template-columns: repeat(10, 45px);
     grid-template-rows: repeat(2, 25px);
 `;
 
 const Delete = styled.div`
-    width:50px;
-    height:25px;
+    width: 50px;
+    height: 25px;
     grid-column: 10/11;
     grid-row: 1/2;
-
-`
+`;
 
 const TitleText = styled.span`
-    grid-column:1/11;
-    grid-row:1/2;
-`
+    grid-column: 1/11;
+    grid-row: 1/2;
+`;
 
 const DeleteAlert = styled.div`
-    display:block;
-    posiiton: absolution;
-    backgroun-color:red;
-`
+    display: ${(props) => (props.show ? "flex" : "none")};
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2); /* 투명도 조정 */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+`;
 
 const MySvgIcon = () => (
     <svg
@@ -81,10 +84,11 @@ const MySvgIcon = () => (
     >
       <path d="M12 16.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5M10.5 12c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5m0-6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5" />
     </svg>
-  );
+);
 
 function Notion() {
     const [isWritePageVisible, setWritePageVisible] = useState(false);
+    const [isDeleteVisible, setDeleteVisible] = useState(false);
     const [notions, setNotions] = useState([]); // 여러 개의 전공과 제목 저장
 
     const OnWritePage = () => {
@@ -96,9 +100,10 @@ function Notion() {
         OnWritePage();
     };
 
-    const DeleteNotion = (keyNumber) => {
+    const DeleteNotion = (index) => {
+        setDeleteVisible(true); // 삭제 경고창 표시
         setNotions((prevNotions) => prevNotions.filter((_, i) => i !== index));
-    }
+    };
 
     return (
         <WriteJova>
@@ -116,6 +121,9 @@ function Notion() {
                     <Delete onClick={() => DeleteNotion(index)}>
                         <MySvgIcon />
                     </Delete>
+                    <DeleteAlert show={isDeleteVisible}>
+                        삭제하시겠습니까?
+                    </DeleteAlert>
                 </WritttenNotion>
             ))}
         </WriteJova>
