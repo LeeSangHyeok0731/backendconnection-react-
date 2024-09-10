@@ -15,8 +15,9 @@ const Button = styled.button`
     justify-content:center;
 `
 
-function LoginLogic() {
-    
+function LoginLogic({title, content}) {
+    console.log(title)
+    console.log(content)
 }
 
 function Login() {
@@ -31,7 +32,7 @@ function Login() {
             <label for="pictureUrl">서버주에게 하고싶은 말: </label>
             <input type="text" id="pictureUrl" name="pictureUrl" /><br /><br />
 
-            <Button type="button" onclick="submitForm()">Submit</Button>
+            <Button type="button" onClick="submitForm">Submit</Button>
         </LoginWrapper>
     )
 }

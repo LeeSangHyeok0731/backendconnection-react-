@@ -24,6 +24,9 @@ const TextAreaContent = styled.textarea`
     margin-bottom: 20px;
     padding: 10px;
     resize: none;
+    border-style:solid;
+    border-width:1px;
+    border-color:red;
 `;
 
 const MajorBox = styled.div`
@@ -93,6 +96,8 @@ function WriteNotionGpt({ onSubmit }) {
     const SubmitNotion = () => {
         let sendMajor = [];
         let Title = title;
+        let Content = content;
+        let count = 0;
         Object.keys(selected).forEach((key) => {
             if (selected[key] === "Selected") {
                 if (key === "0") sendMajor.push("FrontEnd");
@@ -102,11 +107,36 @@ function WriteNotionGpt({ onSubmit }) {
                 if (key === "4") sendMajor.push("Android");
                 if (key === "5") sendMajor.push("Devops");
                 if (key === "6") sendMajor.push("AI");
+                count++;
             }
         });
-        console.log("선택된 전공:", sendMajor);
-        console.log(Title);
-        onSubmit({ majors: sendMajor, title: Title });
+        if(Title === "" || count === 0 || Content === ""){
+            alert("모든 정보를 올바르게 입력해 주세요");
+        } else {
+            console.log("선택된 전공:", sendMajor);
+            console.log(Title);
+            onSubmit({ majors: sendMajor, title: Title });
+            setTitle("");
+            setContent("");
+            setBgColors({
+                0: "white",
+                1: "white",
+                2: "white",
+                3: "white",
+                4: "white",
+                5: "white",
+                6: "white",
+            });
+            setSelected({
+                0: "unSelected",
+                1: "unSelected",
+                2: "unSelected",
+                3: "unSelected",
+                4: "unSelected",
+                5: "unSelected",
+                6: "unSelected",
+            })
+        }
         /*console.log(Content);
         onSubmit(Content);*/
     };
