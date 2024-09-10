@@ -13,6 +13,9 @@ const WriteJova = styled.div`
 
 const P = styled.p`
     margin: 0;
+    src=""
+    grid-column: 1/10;
+    grid-row: 2/3;
 `;
 
 const WriteButton = styled.button`
@@ -45,7 +48,24 @@ const WritttenNotion = styled.div`
     width: 450px;
     height: 50px;
     margin-top: 25px;
+    display:grid;
+    grid-template-columns: repeat(10, 45px);
+    grid-template-rows: repeat(2, 25px);
 `;
+
+const Delete = styled.img`
+    border:1px solid red;
+    width:50px;
+    height:25px;
+    grid-column: 10/11;
+    grid-row: 1/2;
+    
+`
+
+const TitleText = styled.span`
+    grid-column:1/10;
+    grid-row:1/2;
+`
 
 function Notion() {
     const [isWritePageVisible, setWritePageVisible] = useState(false);
@@ -71,8 +91,9 @@ function Notion() {
 
             {notions.map((notion, index) => (
                 <WritttenNotion key={index}>
-                    <span>{notion.title}</span>
-                    <P>선택된 전공: {notion.majors.join(", ")}</P>
+                    <TitleText>{notion.title}</TitleText>
+                    <P>{notion.majors.join(", ")}</P>
+                    <Delete />
                 </WritttenNotion>
             ))}
         </WriteJova>

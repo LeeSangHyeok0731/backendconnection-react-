@@ -24,7 +24,9 @@ const TextAreaContent = styled.textarea`
     margin-bottom: 20px;
     padding: 10px;
     resize: none;
-    
+    border-style:solid;
+    border-width:1px;
+    border-color:red;
 `;
 
 const MajorBox = styled.div`
