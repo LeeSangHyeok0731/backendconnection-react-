@@ -97,6 +97,7 @@ const SayYes = styled.div`
     grid-row:7/9;
     justify-content:center;
     align-items:center;
+    cursor: pointer; /* 수정 */
 `
 
 const SayNo = styled.div`
@@ -105,6 +106,7 @@ const SayNo = styled.div`
     grid-row:7/9;
     justify-content:center;
     align-items:center;
+    cursor: pointer; /* 수정 */
 `
 
 const MySvgIcon = () => (
@@ -121,7 +123,7 @@ const MySvgIcon = () => (
 
 function Notion() {
     const [isWritePageVisible, setWritePageVisible] = useState(false);
-    const [isDeleteVisible, setDeleteVisible] = useState(false);
+    const [isDeleteVisible, setDeleteVisible] = useState(true);
     const [notions, setNotions] = useState([]); // 여러 개의 전공과 제목 저장
 
     const OnWritePage = () => {
@@ -134,13 +136,16 @@ function Notion() {
     };
 
     const DeleteNotion = () => {
-        let say = false;
-        say = !say;
-        setDeleteVisible(say); // 삭제 경고창 표시
+        setDeleteVisible(true); // 항상 true로 설정하여 삭제 경고창을 표시
+    };
+
+    const handleDeleteCancel = () => {
+        setDeleteVisible(false); // 삭제 취소 시 경고창 닫기
     };
 
     const AlertDelete = (index) =>{
-        setNotions((prevNotions) => prevNotions.filter((_, i) => i !== index));
+        setNotions((prevNotions) => prevNotions.filter((_, i) => i !== index)); // 선택한 항목 삭제
+        setDeleteVisible(false); // 삭제 후 경고창 닫기
     }
 
     return (
@@ -155,7 +160,7 @@ function Notion() {
             {notions.map((notion, index) => (
                 <WritttenNotion key={index}>
                     <TitleText>{notion.title}</TitleText>
-                    <P>{notion.majors.join(", ")}</P>
+                    <P>{notion.majors?.join(", ")}</P> {/* majors 배열이 비었을 경우 대비 */}
                     <Delete onClick={DeleteNotion}>
                         <MySvgIcon />
                     </Delete>
@@ -164,10 +169,10 @@ function Notion() {
                             <AlertTest>
                                 삭제 하시겠습니까?
                             </AlertTest>
-                            <SayYes onClick={DeleteNotion}>
+                            <SayYes onClick={() => AlertDelete(index)}>
                                 네
                             </SayYes>
-                            <SayNo onClick={() => AlertDelete(index)}>
+                            <SayNo onClick={handleDeleteCancel}>
                                 아니요
                             </SayNo>
                         </SetDelete>
