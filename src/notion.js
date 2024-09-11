@@ -139,7 +139,7 @@ function Notion() {
         setDeleteVisible(say); // 삭제 경고창 표시
     };
 
-    const Delete = (index) =>{
+    const AlertDelete = (index) =>{
         setNotions((prevNotions) => prevNotions.filter((_, i) => i !== index));
     }
 
@@ -156,7 +156,7 @@ function Notion() {
                 <WritttenNotion key={index}>
                     <TitleText>{notion.title}</TitleText>
                     <P>{notion.majors.join(", ")}</P>
-                    <Delete onClick={() => DeleteNotion}>
+                    <Delete onClick={DeleteNotion}>
                         <MySvgIcon />
                     </Delete>
                     <DeleteAlert show={isDeleteVisible}>
@@ -164,10 +164,10 @@ function Notion() {
                             <AlertTest>
                                 삭제 하시겠습니까?
                             </AlertTest>
-                            <SayYes onClick={() => DeleteNotion}>
+                            <SayYes onClick={DeleteNotion}>
                                 네
                             </SayYes>
-                            <SayNo onClick={() => Delete(index)}>
+                            <SayNo onClick={() => AlertDelete(index)}>
                                 아니요
                             </SayNo>
                         </SetDelete>
