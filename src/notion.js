@@ -33,7 +33,7 @@ const WritePage = styled.div`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 1;
     display: ${(props) => (props.show ? "flex" : "none")};
     justify-content: center;
@@ -72,7 +72,40 @@ const DeleteAlert = styled.div`
     left: 0;
     width: 100vw;
     height: 100vh;
+    justify-content:center;
+    align-items:center;
 `;
+
+const SetDelete = styled.div`
+    width:250px;
+    height:250px;
+    background-color:white;
+    display:grid;
+    grid-template-columns: repeat(10, 25px);
+    grid-template-rows: repeat(10, 25px);
+`
+
+const AlertTest = styled.p`
+    color: black;
+    grid-column: 3/9;
+    grid-row:2/3;
+`
+
+const SayYes = styled.div`
+    display:flex;
+    grid-column: 1/5;
+    grid-row:7/9;
+    justify-content:center;
+    align-items:center;
+`
+
+const SayNo = styled.div`
+    display:flex;
+    grid-column: 6/10;
+    grid-row:7/9;
+    justify-content:center;
+    align-items:center;
+`
 
 const MySvgIcon = () => (
     <svg
@@ -100,10 +133,15 @@ function Notion() {
         OnWritePage();
     };
 
-    const DeleteNotion = (index) => {
-        setDeleteVisible(true); // 삭제 경고창 표시
-        setNotions((prevNotions) => prevNotions.filter((_, i) => i !== index));
+    const DeleteNotion = () => {
+        let say = false;
+        say = !say;
+        setDeleteVisible(say); // 삭제 경고창 표시
     };
+
+    const Delete = (index) =>{
+        setNotions((prevNotions) => prevNotions.filter((_, i) => i !== index));
+    }
 
     return (
         <WriteJova>
@@ -118,11 +156,21 @@ function Notion() {
                 <WritttenNotion key={index}>
                     <TitleText>{notion.title}</TitleText>
                     <P>{notion.majors.join(", ")}</P>
-                    <Delete onClick={() => DeleteNotion(index)}>
+                    <Delete onClick={() => DeleteNotion}>
                         <MySvgIcon />
                     </Delete>
                     <DeleteAlert show={isDeleteVisible}>
-                        삭제하시겠습니까?
+                        <SetDelete>
+                            <AlertTest>
+                                삭제 하시겠습니까?
+                            </AlertTest>
+                            <SayYes onClick={() => DeleteNotion}>
+                                네
+                            </SayYes>
+                            <SayNo onClick={() => Delete(index)}>
+                                아니요
+                            </SayNo>
+                        </SetDelete>
                     </DeleteAlert>
                 </WritttenNotion>
             ))}
